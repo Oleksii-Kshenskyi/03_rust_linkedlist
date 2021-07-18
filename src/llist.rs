@@ -1,13 +1,48 @@
 use std::boxed::Box;
+use std::fmt;
+use std::fmt::Display;
 
 pub struct List<T> {
     head: Option<Box<Node<T>>>,
+}
+
+impl<T> Display for List<T>
+where
+    T: Display,
+{
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        write!(f, "[")?;
+
+        let mut current = &self.head;
+        while current.is_some() {
+            let thenode = current.as_ref().unwrap().as_ref();
+
+            write!(f, "{}", thenode.value)?;
+            if thenode.next.is_some() {
+                write!(f, ", ")?;
+            }
+
+            current = &thenode.next;
+        }
+
+        write!(f, "]")?;
+        Ok(())
+    }
 }
 
 #[derive(Clone)]
 struct Node<T> {
     value: T,
     next: Option<Box<Node<T>>>,
+}
+
+impl<T> Display for Node<T>
+where
+    T: Display,
+{
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        write!(f, "{}", self.value)
+    }
 }
 
 impl<T> List<T>

@@ -1,6 +1,6 @@
 [package]
 name = "linkedlist"
-version = "0.1.0"
+version = "0.2.0"
 authors = [ "Oleksii Kshenskyi <oleksii.kshenskyi@outlook.com>" ]
 
 [[bin]]
