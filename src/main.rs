@@ -19,7 +19,8 @@ fn main() {
     trylist.pop();
     trylist.pop();
     trylist.pop();
-    trylist.pop();
+    let noneval = trylist.pop();
+    assert_eq!(noneval, None);
 
     trylist.push(13);
     trylist.push(44);
